@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secretaria da Mulher - Contra Violência Doméstica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS for elements that need more specific styling */
+        .emergency-btn {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+        }
+
+        .quick-exit {
+            transition: all 0.3s ease;
+        }
+
+        .quick-exit:hover {
+            background-color: #f87171 !important;
+        }
+
+        .chat-bubble {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+
+        .violence-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .violence-card {
+            transition: all 0.3s ease;
+        }
+
+        /* Hide chat by default */
+        #chat-container {
+            display: none;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Quick Exit Button -->
+    <button id="quickExit" class="quick-exit fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full shadow-lg z-50">
+        <i class="fas fa-running mr-2"></i> Saída Rápida
+    </button>
+
+    <!-- Header with Navigation -->
+    <header class="bg-purple-800 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-hands-helping text-3xl"></i>
+                    <h1 class="text-2xl font-bold">Secretaria da Mulher</h1>
+                </div>
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-6">
+                        <li><a href="#home" class="hover:text-purple-200 transition">Início</a></li>
+                        <li><a href="#violence-types" class="hover:text-purple-200 transition">Tipos de Violência</a></li>
+                        <li><a href="#what-to-do" class="hover:text-purple-200 transition">O Que Fazer</a></li>
+                        <li><a href="#support" class="hover:text-purple-200 transition">Redes de Apoio</a></li>
+                        <li><a href="#legal" class="hover:text-purple-200 transition">Orientação Jurídica</a></li>
+                    </ul>
+                </nav>
+                <button class="md:hidden text-2xl" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-purple-700 py-4 px-4">
+            <ul class="space-y-3">
+                <li><a href="#home" class="block hover:text-purple-200 transition">Início</a></li>
+                <li><a href="#violence-types" class="block hover:text-purple-200 transition">Tipos de Violência</a></li>
+                <li><a href="#what-to-do" class="block hover:text-purple-200 transition">O Que Fazer</a></li>
+                <li><a href="#support" class="block hover:text-purple-200 transition">Redes de Apoio</a></li>
+                <li><a href="#legal" class="block hover:text-purple-200 transition">Orientação Jurídica</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section with SOS Button -->
+    <section id="home" class="bg-gradient-to-r from-purple-600 to-pink-500 text-white py-16 md:py-24">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Você não está sozinha</h2>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">A Secretaria da Mulher está aqui para te ajudar a sair da violência doméstica</p>
+
+            <!-- Emergency Button -->
+            <a href="#report" class="emergency-btn inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-full text-xl mb-8 transition duration-300">
+                <i class="fas fa-exclamation-triangle mr-2"></i> SOS - AJUDA IMEDIATA
+            </a>
+
+            <!-- Important Numbers -->
+            <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-6 max-w-2xl mx-auto">
+                <h3 class="text-2xl font-semibold mb-4">Números Importantes</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-white bg-opacity-30 p-4 rounded-lg">
+                        <i class="fas fa-phone-alt text-2xl mb-2"></i>
+                        <p class="font-bold">Disque Denúncia</p>
+                        <p class="text-2xl font-bold">180</p>
+                    </div>
+                    <div class="bg-white bg-opacity-30 p-4 rounded-lg">
+                        <i class="fas fa-ambulance text-2xl mb-2"></i>
+                        <p class="font-bold">Polícia Militar</p>
+                        <p class="text-2xl font-bold">190</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Violence Types Section -->
+    <section id="violence-types" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-purple-800">Tipos de Violência Doméstica</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Physical Violence Card -->
+                <div class="violence-card bg-purple-100 rounded-lg overflow-hidden shadow-md">
+                    <div class="bg-purple-600 text-white p-4">
+                        <i class="fas fa-hand-rock text-3xl mb-2"></i>
+                        <h3 class="text-xl font-bold">Violência Física</h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-700">Qualquer conduta que ofenda a integridade ou saúde corporal, como bater, empurrar, queimar, etc.</p>
+                    </div>
+                </div>
+
+                <!-- Psychological Violence Card -->
+                <div class="violence-card bg-pink-100 rounded-lg overflow-hidden shadow-md">
+                    <div class="bg-pink-600 text-white p-4">
+                        <i class="fas fa-brain text-3xl mb-2"></i>
+                        <h3 class="text-xl font-bold">Violência Psicológica</h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-700">Ameaças, humilhações, perseguição, chantagem, isolamento, controle, destruição de objetos pessoais.</p>
+                    </div>
+                </div>
+
+                <!-- Sexual Violence Card -->
+                <div class="violence-card bg-red-100 rounded-lg overflow-hidden shadow-md">
+                    <div class="bg-red-600 text-white p-4">
+                        <i class="fas fa-exclamation-triangle text-3xl mb-2"></i>
+                        <h3 class="text-xl font-bold">Violência Sexual</h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-700">Obrigar a mulher a fazer atos sexuais contra sua vontade, impedir uso de contraceptivos, forçar aborto.</p>
+                    </div>
+                </div>
+
+                <!-- Financial Violence Card -->
+                <div class="violence-card bg-blue-100 rounded-lg overflow-hidden shadow-md">
+                    <div class="bg-blue-600 text-white p-4">
+                        <i class="fas fa-money-bill-wave text-3xl mb-2"></i>
+                        <h3 class="text-xl font-bold">Violência Patrimonial</h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-700">Destruição de documentos pessoais, controle do dinheiro, impedir trabalho remunerado, reter salário.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What To Do Section -->
+    <section id="what-to-do" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-purple-800">O Que Fazer em Caso de Violência</h2>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
+                    <div class="bg-purple-700 text-white p-4">
+                        <h3 class="text-xl font-bold">Passo a Passo para Proteção</h3>
+                    </div>
+                    <div class="p-6">
+                        <ol class="list-decimal pl-5 space-y-4">
+                            <li class="font-semibold">Mantenha a calma e procure um local seguro</li>
+                            <li>Ligue para os números de emergência (180 ou 190)</li>
+                            <li class="font-semibold">Registre um Boletim de Ocorrência</li>
+                            <li>Procure uma Delegacia da Mulher ou órgão especializado</li>
+                            <li class="font-semibold">Busque atendimento médico se necessário</li>
+                            <li>Documente provas (fotos, vídeos, testemunhas)</li>
+                            <li class="font-semibold">Busque apoio psicológico</li>
+                            <li>Considere medidas protetivas na Justiça</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="text-purple-600 text-3xl mb-4">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Medidas Protetivas</h3>
+                        <p class="text-gray-700">A Lei Maria da Penha prevê medidas protetivas que podem afastar o agressor, proibir contato e determinar distância mínima.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="text-pink-600 text-3xl mb-4">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Abrigos</h3>
+                        <p class="text-gray-700">Existem casas-abrigo sigilosas que oferecem proteção temporária para mulheres em risco de vida. Ligue 180 para informações.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Network Section -->
+    <section id="support" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-purple-800">Redes de Apoio</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-purple-50 rounded-lg p-6 shadow-sm">
+                    <h3 class="text-xl font-bold mb-4 text-purple-700 border-b border-purple-200 pb-2">Atendimento Presencial</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-building text-purple-600 mt-1 mr-2"></i>
+                            <span>Delegacias da Mulher</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-clinic-medical text-purple-600 mt-1 mr-2"></i>
+                            <span>Centros de Referência da Mulher (CRMs)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-hospital text-purple-600 mt-1 mr-2"></i>
+                            <span>Hospitais e UBS com atendimento especializado</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-pink-50 rounded-lg p-6 shadow-sm">
+                    <h3 class="text-xl font-bold mb-4 text-pink-700 border-b border-pink-200 pb-2">Atendimento Online</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-globe text-pink-600 mt-1 mr-2"></i>
+                            <span>Disque 180 - Central de Atendimento à Mulher</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-comments text-pink-600 mt-1 mr-2"></i>
+                            <span>Chat online da Secretaria da Mulher</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-mobile-alt text-pink-600 mt-1 mr-2"></i>
+                            <span>Aplicativo "SOS Mulher" (disponível para Android e iOS)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-blue-50 rounded-lg p-6 shadow-sm">
+                    <h3 class="text-xl font-bold mb-4 text-blue-700 border-b border-blue-200 pb-2">Organizações Parceiras</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-hands-helping text-blue-600 mt-1 mr-2"></i>
+                            <span>ONGs de proteção à mulher</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-gavel text-blue-600 mt-1 mr-2"></i>
+                            <span>Defensorias Públicas</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-heart text-blue-600 mt-1 mr-2"></i>
+                            <span>Grupos de apoio psicológico</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Service Map -->
+            <div class="mt-12 bg-gray-100 rounded-lg p-6 shadow-sm">
+                <h3 class="text-2xl font-bold mb-6 text-purple-800">Mapeamento de Serviços</h3>
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="flex-1">
+                        <h4 class="text-lg font-semibold mb-4">Encontre ajuda próxima a você</h4>
+                        <div class="bg-white p-4 rounded-lg shadow-inner">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-search text-purple-600 mr-2"></i>
+                                <input type="text" placeholder="Digite seu CEP ou endereço" class="border border-gray-300 rounded px-3 py-2 w-full">
+                            </div>
+                            <select class="border border-gray-300 rounded px-3 py-2 w-full mb-4">
+                                <option>Selecione o tipo de serviço</option>
+                                <option>Delegacia da Mulher</option>
+                                <option>Centro de Referência</option>
+                                <option>Abrigo</option>
+                                <option>Atendimento Jurídico</option>
+                                <option>Atendimento Psicológico</option>
+                            </select>
+                            <button class="bg-purple-600 text-white px-4 py-2 rounded w-full hover:bg-purple-700 transition">Buscar</button>
+                        </div>
+                    </div>
+                    <div class="flex-1 bg-gray-200 rounded-lg flex items-center justify-center">
+                        <p class="text-gray-600">Mapa interativo será exibido aqui</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal and Psychological Guidance -->
+    <section id="legal" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-purple-800">Orientação Jurídica e Psicológica</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="text-purple-600 text-3xl mb-4">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Orientação Jurídica</h3>
+                    <p class="text-gray-700 mb-4">Conheça seus direitos e as leis que protegem as mulheres:</p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-purple-500 mt-1 mr-2"></i>
+                            <span>Lei Maria da Penha (Lei 11.340/2006)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-purple-500 mt-1 mr-2"></i>
+                            <span>Lei do Feminicídio (Lei 13.104/2015)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-purple-500 mt-1 mr-2"></i>
+                            <span>Medidas protetivas de urgência</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="text-purple-600 font-semibold hover:underline">Saiba mais sobre seus direitos →</a>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="text-pink-600 text-3xl mb-4">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Apoio Psicológico</h3>
+                    <p class="text-gray-700 mb-4">Cuidar da saúde mental é fundamental:</p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-pink-500 mt-1 mr-2"></i>
+                            <span>Atendimento psicológico gratuito</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-pink-500 mt-1 mr-2"></i>
+                            <span>Grupos de apoio e acolhimento</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-pink-500 mt-1 mr-2"></i>
+                            <span>Orientacão para reconstrução da autoestima</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="text-pink-600 font-semibold hover:underline">Agende uma consulta →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Report Channel Section -->
+    <section id="report" class="py-16 bg-purple-800 text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Canal de Denúncia</h2>
+
+            <div class="max-w-3xl mx-auto bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-8">
+                <h3 class="text-2xl font-bold mb-6">Faça sua denúncia de forma segura</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white bg-opacity-30 p-4 rounded-lg">
+                        <i class="fas fa-phone-volume text-2xl mb-2"></i>
+                        <h4 class="text-xl font-semibold mb-2">Por Telefone</h4>
+                        <p class="mb-2">Ligue para o Disque Denúncia 180</p>
+                        <p class="text-2xl font-bold">180</p>
+                    </div>
+
+                    <div class="bg-white bg-opacity-30 p-4 rounded-lg">
+                        <i class="fas fa-mobile-alt text-2xl mb-2"></i>
+                        <h4 class="text-xl font-semibold mb-2">Por Aplicativo</h4>
+                        <p>Baixe o app "SOS Mulher" e denuncie com segurança</p>
+                        <div class="flex space-x-3 mt-3">
+                            <button class="bg-black text-white px-3 py-1 rounded text-sm">
+                                <i class="fab fa-apple mr-1"></i> App Store
+                            </button>
+                            <button class="bg-green-600 text-white px-3 py-1 rounded text-sm">
+                                <i class="fab fa-google-play mr-1"></i> Play Store
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 class="text-xl font-semibold mb-4">Ou denuncie online aqui:</h4>
+                <form class="space-y-4">
+                    <div>
+                        <label class="block mb-1">Seu nome (opcional)</label>
+                        <input type="text" class="w-full bg-white bg-opacity-20 border border-white border-opacity-50 rounded px-3 py-2 placeholder-white placeholder-opacity-70">
+                    </div>
+
+                    <div>
+                        <label class="block mb-1">Seu e-mail (opcional)</label>
+                        <input type="email" class="w-full bg-white bg-opacity-20 border border-white border-opacity-50 rounded px-3 py-2 placeholder-white placeholder-opacity-70">
+                    </div>
+
+                    <div>
+                        <label class="block mb-1">Relato da violência*</label>
+                        <textarea rows="4" class="w-full bg-white bg-opacity-20 border border-white border-opacity-50 rounded px-3 py-2 placeholder-white placeholder-opacity-70" required></textarea>
+                    </div>
+
+                    <div class="flex items-center">
+                        <input type="checkbox" id="anonymous" class="mr-2">
+                        <label for="anonymous">Desejo me manter anônima</label>
+                    </div>
+
+                    <button type="submit" class="bg-white text-purple-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-100 transition">Enviar Denúncia</button>
+                </form>
+
+                <div class="mt-6 text-sm text-white text-opacity-80">
+                    <p><i class="fas fa-lock mr-2"></i> Todas as denúncias são sigilosas e protegidas por lei</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Educational Content -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-purple-800">Conteúdo Educativo e Preventivo</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <div class="h-48 bg-purple-100 flex items-center justify-center">
+                        <i class="fas fa-book-open text-5xl text-purple-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Cartilha Digital</h3>
+                        <p class="text-gray-700 mb-4">Guia completo sobre direitos da mulher e como identificar violência doméstica.</p>
+                        <a href="#" class="text-purple-600 font-semibold hover:underline">Baixar PDF →</a>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <div class="h-48 bg-pink-100 flex items-center justify-center">
+                        <i class="fas fa-film text-5xl text-pink-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Vídeos Educativos</h3>
+                        <p class="text-gray-700 mb-4">Série de vídeos com especialistas sobre prevenção e enfrentamento à violência.</p>
+                        <a href="#" class="text-pink-600 font-semibold hover:underline">Assistir →</a>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <div class="h-48 bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-chalkboard-teacher text-5xl text-blue-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Workshops Online</h3>
+                        <p class="text-gray-700 mb-4">Participe de nossos encontros virtuais sobre empoderamento feminino.</p>
+                        <a href="#" class="text-blue-600 font-semibold hover:underline">Ver agenda →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Resources -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-purple-800">Recursos Adicionais</h2>
+
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-question-circle text-purple-600 mr-3"></i>
+                        Perguntas Frequentes
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="border-b border-gray-200 pb-3">
+                            <button class="faq-btn w-full text-left font-semibold flex justify-between items-center">
+                                <span>Como faço para obter uma medida protetiva?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-content hidden mt-2 text-gray-700">
+                                Você pode solicitar na delegacia mais próxima ou na Delegacia da Mulher. Leve documentos pessoais e qualquer prova da agressão. A medida pode ser concedida em até 48 horas.
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-200 pb-3">
+                            <button class="faq-btn w-full text-left font-semibold flex justify-between items-center">
+                                <span>Posso denunciar mesmo sem provas?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-content hidden mt-2 text-gray-700">
+                                Sim, você pode e deve denunciar mesmo sem provas. O relato da vítima já constitui prova. As autoridades irão orientar sobre os próximos passos.
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-200 pb-3">
+                            <button class="faq-btn w-full text-left font-semibold flex justify-between items-center">
+                                <span>Existe ajuda financeira para mulheres vítimas de violência?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-content hidden mt-2 text-gray-700">
+                                Alguns estados e municípios oferecem auxílio financeiro temporário. Consulte o CRAS (Centro de Referência de Assistência Social) mais próximo ou ligue para o 180.
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="mt-4 inline-block text-purple-600 font-semibold hover:underline">Ver todas as perguntas →</a>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-download text-pink-600 mr-3"></i>
+                        Materiais para Download
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-file-pdf text-red-500 mr-3"></i>
+                            <div>
+                                <p class="font-semibold">Guia de Direitos da Mulher</p>
+                                <p class="text-sm text-gray-600">PDF - 2.4MB</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-file-word text-blue-500 mr-3"></i>
+                            <div>
+                                <p class="font-semibold">Modelo de Medida Protetiva</p>
+                                <p class="text-sm text-gray-600">DOCX - 1.1MB</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-file-image text-green-500 mr-3"></i>
+                            <div>
+                                <p class="font-semibold">Cartaz de Campanha</p>
+                                <p class="text-sm text-gray-600">JPG - 3.2MB</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="#" class="mt-4 inline-block text-pink-600 font-semibold hover:underline">Ver todos os materiais →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-hands-helping mr-2"></i>
+                        Secretaria da Mulher
+                    </h3>
+                    <p class="text-gray-400">Promovendo a igualdade de gênero e o combate à violência contra a mulher.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Página Inicial</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Denuncie</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Busque Ajuda</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Materiais Educativos</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contato</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-gray-400 mr-2"></i>
+                            <span>Disque 180</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-gray-400 mr-2"></i>
+                            <span>contato@secretariadamulher.gov.br</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-gray-400 mr-2"></i>
+                            <span>Brasília - DF</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Siga-nos</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition text-xl"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition text-xl"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition text-xl"><i class="fab fa-youtube"></i></a>
+                    </div>
+
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">Baixe nosso aplicativo</p>
+                        <div class="flex space-x-2 mt-2">
+                            <button class="bg-black text-white px-3 py-1 rounded text-sm flex items-center">
+                                <i class="fab fa-apple mr-1"></i> App Store
+                            </button>
+                            <button class="bg-green-600 text-white px-3 py-1 rounded text-sm flex items-center">
+                                <i class="fab fa-google-play mr-1"></i> Play Store
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2023 Secretaria da Mulher. Todos os direitos reservados.</p>
+                <p class="mt-2">Este site é seguro e utiliza criptografia SSL para proteger suas informações.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Bubble -->
+    <div class="chat-bubble">
+        <button id="chatBubble" class="bg-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-xl hover:bg-purple-700 transition">
+            <i class="fas fa-comment-dots text-2xl"></i>
+        </button>
+    </div>
+
+    <!-- Chat Container -->
+    <div id="chat-container" class="fixed bottom-20 right-6 w-80 bg-white rounded-lg shadow-xl z-50 border border-gray-200">
+        <div class="bg-purple-600 text-white p-3 rounded-t-lg flex justify-between items-center">
+            <h3 class="font-bold">Chat de Ajuda</h3>
+            <button id="closeChat" class="text-white hover:text-gray-200">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="p-4 h-64 overflow-y-auto" id="chat-messages">
+            <div class="mb-4">
+                <div class="bg-purple-100 text-gray-800 rounded-lg p-3 max-w-xs">
+                    <p>Olá! Sou a assistente virtual da Secretaria da Mulher. Como posso te ajudar hoje?</p>
+                </div>
+                <p class="text-xs text-gray-500 mt-1">Assistente Virtual • Agora</p>
+            </div>
+        </div>
+        <div class="p-3 border-t border-gray-200">
+            <div class="flex">
+                <input type="text" id="chat-input" placeholder="Digite sua mensagem..." class="flex-1 border border-gray-300 rounded-l-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-purple-500">
+                <button id="send-message" class="bg-purple-600 text-white px-4 py-2 rounded-r-lg hover:bg-purple-700 transition">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">Este chat é anônimo e seguro.</p>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Quick Exit Button
+        document.getElementById('quickExit').addEventListener('click', function() {
+            // Redirect to a neutral site (like Google) when quick exit is clicked
+            window.location.href = 'https://www.google.com';
+        });
+
+        // FAQ Accordion
+        const faqBtns = document.querySelectorAll('.faq-btn');
+        faqBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('i');
+
+                content.classList.toggle('hidden');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
+        });
+
+        // Chat Toggle
+        const chatBubble = document.getElementById('chatBubble');
+        const chatContainer = document.getElementById('chat-container');
+        const closeChat = document.getElementById('closeChat');
+
+        chatBubble.addEventListener('click', function() {
+            chatContainer.style.display = 'block';
+        });
+
+        closeChat.addEventListener('click', function() {
+            chatContainer.style.display = 'none';
+        });
+
+        // Simple Chat Functionality
+        const chatInput = document.getElementById('chat-input');
+        const sendMessage = document.getElementById('send-message');
+        const chatMessages = document.getElementById('chat-messages');
+
+        sendMessage.addEventListener('click', function() {
+            const message = chatInput.value.trim();
+            if (message) {
+                // Add user message
+                const userMsgDiv = document.createElement('div');
+                userMsgDiv.className = 'mb-4 flex justify-end';
+                userMsgDiv.innerHTML = `
+                    <div>
+                        <div class="bg-purple-600 text-white rounded-lg p-3 max-w-xs ml-auto">
+                            <p>${message}</p>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1 text-right">Você • Agora</p>
+                    </div>
+                `;
+                chatMessages.appendChild(userMsgDiv);
+
+                // Clear input
+                chatInput.value = '';
+
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                // Simulate response after a short delay
+                setTimeout(() => {
+                    const responses = [
+                        "Entendi. Posso te indicar os locais de atendimento mais próximos.",
+                        "Você está em perigo imediato? Caso positivo, ligue para 190.",
+                        "Existem diversos serviços que podem te ajudar. Posso te orientar.",
+                        "Lamento que você esteja passando por isso. Você não está sozinha.",
+                        "Posso te passar informações sobre medidas protetivas, se desejar."
+                    ];
+
+                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+
+                    const botMsgDiv = document.createElement('div');
+                    botMsgDiv.className = 'mb-4';
+                    botMsgDiv.innerHTML = `
+                        <div class="bg-purple-100 text-gray-800 rounded-lg p-3 max-w-xs">
+                            <p>${randomResponse}</p>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Assistente Virtual • Agora</p>
+                    `;
+                    chatMessages.appendChild(botMsgDiv);
+
+                    // Scroll to bottom again
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1000);
+            }
+        });
+
+        // Allow sending message with Enter key
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage.click();
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
