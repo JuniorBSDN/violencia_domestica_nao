@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRAES Vigia de Nazaré - Contra a Violência Doméstica</title>
+    <title>CRAES Vigia de Nazaré</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -63,39 +63,74 @@
 </head>
 <body class="font-sans bg-gray-50 pt-24">
   <header class="bg-white text-gray-800 shadow-lg fixed top-0 left-0 right-0 z-50">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center space-x-2">
-            <img src="https://i.imgur.com/pBVZXnc.png" alt="Logo" class="w-40 h-20 object-contain">
-            <div>
-                <h1 class="text-xl font-bold">CREAS Vigia de Nazaré</h1>
-                <p class="text-xs text-gray-600">Centro de Referência Especializado de Assistência Social</p>
-            </div>
-        </div>
-        <nav class="hidden md:block">
-            <ul class="flex items-center space-x-8">
-                <li><a href="#servicos" class="hover:text-red-700 transition">Serviços</a></li>
-                <li><a href="#apoio" class="hover:text-red-700 transition">Apoio</a></li>
-                <li><a href="#localizacao" class="hover:text-red-700 transition">Localização</a></li>
-                <li><a href="#parceiros" class="hover:text-red-700 transition">Parceiros</a></li>
-                <li class="flex items-center space-x-4">
-                    <a href="denuncia.html" class="bg-red-700 text-white font-bold px-6 py-2 rounded-lg hover:bg-red-600 transition transform hover:scale-105">FAZER DENÚNCIA</a>
-                    <a href="#servicos" class="bg-transparent border-2 border-red-700 text-red-700 font-bold px-6 py-2 rounded-lg hover:bg-red-700 hover:text-white transition">CONHEÇA NOSSOS SERVIÇOS</a>
-                </li>
-            </ul>
-        </nav>
-        <button class="md:hidden text-2xl">
-            <i class="fas fa-bars"></i>
-        </button>
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <!-- Logo e título -->
+    <div class="flex items-center space-x-2">
+      <img src="https://i.imgur.com/pBVZXnc.png" alt="Logo" class="w-32 h-16 md:w-40 md:h-20 object-contain">
+      <div>
+        <h1 class="text-lg md:text-xl font-bold">CREAS Vigia de Nazaré</h1>
+        <p class="text-[10px] md:text-xs text-gray-600 leading-tight">
+          Centro de Referência Especializado de Assistência Social
+        </p>
+      </div>
     </div>
+
+    <!-- Menu Desktop -->
+    <nav class="hidden md:block">
+      <ul class="flex items-center space-x-6 lg:space-x-8 text-sm lg:text-base">
+        <li><a href="#blog" class="hover:text-red-700 transition">Conteúdo <br class="hidden lg:block">Educativo</a></li>
+        <li><a href="#apoio" class="hover:text-red-700 transition">Ajuda</a></li>
+        <li><a href="#emergency-contacts" class="hover:text-red-700 transition">Emergência</a></li>
+        <li><a href="#localizacao" class="hover:text-red-700 transition">Localização</a></li>
+        <li><a href="#parceiros" class="hover:text-red-700 transition">Parceiros</a></li>
+        <li class="flex items-center space-x-3">
+          <a href="denuncia.html" class="bg-red-700 text-white font-bold px-4 py-2 rounded-lg hover:bg-red-600 transition transform hover:scale-105 text-xs lg:text-sm">FAZER DENÚNCIA</a>
+          <a href="#servicos" class="bg-transparent border-2 border-red-700 text-red-700 font-bold px-4 py-2 rounded-lg hover:bg-red-700 hover:text-white transition text-xs lg:text-sm">SERVIÇOS</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Botão Mobile -->
+    <button id="menu-btn" class="md:hidden text-2xl">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+
+  <!-- Menu Mobile -->
+  <nav id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
+    <ul class="flex flex-col items-center space-y-4 py-6">
+      <li><a href="#blog" class="hover:text-red-700 transition">Conteúdo Educativo</a></li>
+      <li><a href="#apoio" class="hover:text-red-700 transition">Ajuda</a></li>
+      <li><a href="#emergency-contacts" class="hover:text-red-700 transition">Emergência</a></li>
+      <li><a href="#localizacao" class="hover:text-red-700 transition">Localização</a></li>
+      <li><a href="#parceiros" class="hover:text-red-700 transition">Parceiros</a></li>
+      <li>
+        <a href="denuncia.html" class="block w-[80%] text-center bg-red-700 text-white font-bold px-4 py-2 rounded-lg hover:bg-red-600 transition">FAZER DENÚNCIA</a>
+      </li>
+      <li>
+        <a href="#servicos" class="block w-[80%] text-center border-2 border-red-700 text-red-700 font-bold px-4 py-2 rounded-lg hover:bg-red-700 hover:text-white transition">SERVIÇOS</a>
+      </li>
+    </ul>
+  </nav>
 </header>
-  <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const header = document.querySelector('header');
-        if (header) {
-            header.classList.add('header-fade-in');
-        }
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('header');
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (header) {
+      header.classList.add('header-fade-in');
+    }
+
+    // Toggle menu mobile
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
     });
-  </script>
+  });
+</script>
+
 
 <!--SLIDE 1-->
     <div class="slideshow-container relative w-full h-96 overflow-hidden">
