@@ -3,354 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Denúncia de Violência</title>
+    <title>conselhotutelarvigia_denuncia</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .form-section {
-            background-color: rgba(220, 38, 38, 0.05);
-            border-left: 4px solid #dc2626;
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
         }
-        .btn-primary {
-            background-color: #dc2626;
-            transition: all 0.3s ease;
+        .report-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        .btn-primary:hover {
-            background-color: #b91c1c;
-            transform: translateY(-2px);
-        }
-        .emergency-banner {
-            background-color: #dc2626;
+        .emergency-btn {
             animation: pulse 2s infinite;
         }
         @keyframes pulse {
-            0% { opacity: 0.9; }
-            50% { opacity: 1; }
-            100% { opacity: 0.9; }
+            0% {
+                box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(220, 38, 38, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+            }
         }
     </style>
 </head>
-<body class="bg-white">
-    <!-- Emergency Banner -->
-    <div class="emergency-banner text-white py-3 px-4 text-center">
-        <div class="container mx-auto flex items-center justify-center">
-            <i data-feather="alert-triangle" class="mr-2"></i>
-            <span class="font-bold">EMERGÊNCIA: Se você está em perigo imediato, ligue para 190 (Polícia) ou 180 (Central de Atendimento à Mulher)</span>
-        </div>
-    </div>
+<body class="font-sans bg-gray-50">
 
-    <!-- Header -->
-    <header class="py-8 bg-white">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl font-bold text-red-600 mb-2" data-aos="fade-down">
-                <i data-feather="alert-octagon" class="inline mr-2"></i>
-                Faça sua Denúncia
-            </h1>
-            <p class="text-gray-600 max-w-2xl mx-auto" data-aos="fade-up">
-                Este formulário é para denúncias de violência doméstica, contra idosos, crianças, adolescentes, mulheres, homens e outros gêneros.
-            </p>
-        </div>
-    </header>
-
-    <!-- Main Form -->
-    <main class="container mx-auto px-4 py-8 max-w-4xl">
-        <form id="denunciaForm" class="bg-white rounded-lg shadow-lg overflow-hidden">
-            <!-- Victim Information -->
-            <div class="form-section p-6 mb-6" data-aos="fade-right">
-                <h2 class="text-2xl font-semibold text-red-600 mb-4 flex items-center">
-                    <i data-feather="user" class="mr-2"></i>
-                    Informações da Vítima
-                </h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="nomeVitima" class="block text-gray-700 mb-2">Nome da Vítima (opcional)</label>
-                        <input type="text" id="nomeVitima" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-200 focus:border-red-300">
-                    </div>
-
-                    <div>
-                        <label for="idadeVitima" class="block text-gray-700 mb-2">Idade da Vítima</label>
-                        <input type="number" id="idadeVitima" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-200 focus:border-red-300">
-                    </div>
-
-                    <div>
-                        <label for="generoVitima" class="block text-gray-700 mb-2">Gênero da Vítima</label>
-                        <select id="generoVitima" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-200 focus:border-red-300">
-                            <option value="">Selecione</option>
-                            <option value="female">Feminino</option>
-                            <option value="male">Masculino</option>
-                            <option value="other">Outro</option>
-                            <option value="prefer_not">Prefiro não informar</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="tipoVitima" class="block text-gray-700 mb-2">Tipo de Vítima</label>
-                        <select id="tipoVitima" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-200 focus:border-red-300">
-                            <option value="">Selecione</option>
-                            <option value="child">Criança</option>
-                            <option value="teen">Adolescente</option>
-                            <option value="woman">Mulher</option>
-                            <option value="man">Homem</option>
-                            <option value="elderly">Idoso(a)</option>
-                            <option value="other">Outro</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Incident Information -->
-            <div class="form-section p-6 mb-6" data-aos="fade-left">
-                <h2 class="text-2xl font-semibold text-red-600 mb-4 flex items-center">
-                    <i data-feather="alert-circle" class="mr-2"></i>
-                    Informações do Incidente
-                </h2>
-
-                <div class="grid grid-cols-1 gap-6">
-                    <div>
-                        <label for="tipoViolencia" class="block text-gray-700 mb-2">Tipo de Violência</label>
-                        <select id="tipoViolencia" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-200 focus:border-red-300">
-                            <option value="">Selecione</option>
-                            <option value="physical">Física</option>
-                            <option value="psychological">Psicológica</option>
-                            <option value="sexual">Sexual</option>
-                            <option value="financial">Financeira/Econômica</option>
-                            <option value="neglect">Negligência/Abandono</option>
-                            <option value="other">Outro</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="descricaoIncidente" class="block text-gray-700 mb-2">Descrição do Incidente</label>
-                        <textarea id="descricaoIncidente" rows="4" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-200 focus:border-red-300" placeholder="Descreva com detalhes o que aconteceu..."></textarea>
-                    </div>
-
-                    <div>
-                        <label for="dataIncidente" class="block text-gray-700 mb-2">Data do Incidente</label>
-                        <input type="date" id="dataIncidente" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-200 focus:border-red-300">
-                    </div>
-
-                    <div>
-                        <label for="localIncidente" class="block text-gray-700 mb-2">Local do Incidente</label>
-                        <input type="text" id="localIncidente" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-200 focus:border-red-300" placeholder="Endereço ou ponto de referência">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Aggressor Information -->
-            <div class="form-section p-6 mb-6" data-aos="fade-right">
-                <h2 class="text-2xl font-semibold text-red-600 mb-4 flex items-center">
-                    <i data-feather="user-x" class="mr-2"></i>
-                    Informações do Agressor (se conhecido)
-                </h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="nomeAgressor" class="block text-gray-700 mb-2">Nome do Agressor (opcional)</label>
-                        <input type="text" id="nomeAgressor" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-200 focus:border-red-300">
-                    </div>
-
-                    <div>
-                        <label for="relacaoAgressor" class="block text-gray-700 mb-2">Relação com a Vítima</label>
-                        <select id="relacaoAgressor" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-200 focus:border-red-300">
-                            <option value="">Selecione</option>
-                            <option value="partner">Parceiro(a)/Cônjuge</option>
-                            <option value="ex_partner">Ex-parceiro(a)</option>
-                            <option value="parent">Pai/Mãe</option>
-                            <option value="child">Filho(a)</option>
-                            <option value="relative">Parente</option>
-                            <option value="caregiver">Cuidador(a)</option>
-                            <option value="other">Outro</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Reporter Information -->
-            <div class="form-section p-6 mb-6" data-aos="fade-left">
-                <h2 class="text-2xl font-semibold text-red-600 mb-4 flex items-center">
-                    <i data-feather="edit" class="mr-2"></i>
-                    Seus Dados (opcional)
-                </h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="seuNome" class="block text-gray-700 mb-2">Seu Nome</label>
-                        <input type="text" id="seuNome" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-200 focus:border-red-300">
-                    </div>
-
-                    <div>
-                        <label for="seuTelefone" class="block text-gray-700 mb-2">Seu Telefone</label>
-                        <input type="tel" id="seuTelefone" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-200 focus:border-red-300">
-                    </div>
-
-                    <div>
-                        <label for="seuEmail" class="block text-gray-700 mb-2">Seu E-mail</label>
-                        <input type="email" id="seuEmail" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-200 focus:border-red-300">
-                    </div>
-
-                    <div>
-                        <label for="comoSoube" class="block text-gray-700 mb-2">Como soube do caso?</label>
-                        <select id="comoSoube" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-200 focus:border-red-300">
-                            <option value="">Selecione</option>
-                            <option value="witness">Testemunha</option>
-                            <option value="victim">Sou a vítima</option>
-                            <option value="relative">Parente/Amigo</option>
-                            <option value="professional">Profissional envolvido</option>
-                            <option value="other">Outro</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="mt-6">
-                    <label for="manterAnonimato" class="flex items-center">
-                        <input type="checkbox" id="manterAnonimato" class="rounded text-red-600 focus:ring-red-200">
-                        <span class="ml-2 text-gray-700">Desejo manter meu anonimato</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Submit Section -->
-            <div class="bg-gray-50 px-6 py-4 text-right">
-                <button type="submit" class="btn-primary text-white font-bold py-3 px-6 rounded-lg inline-flex items-center">
-                    <i data-feather="send" class="mr-2"></i>
-                    Enviar Denúncia
-                </button>
-            </div>
-        </form>
-    </main>
-
-    <!-- Resources Section -->
-    <section class="bg-gray-50 py-12">
+    <!-- Report Section -->
+    <section id="report" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-red-600 mb-8 text-center" data-aos="fade-up">
-                <i data-feather="life-buoy" class="inline mr-2"></i>
-                Recursos de Ajuda
-            </h2>
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Faça uma Denúncia</h2>
+            <div class="max-w-3xl mx-auto bg-blue-50 rounded-xl shadow-md overflow-hidden p-6">
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-red-500 mb-4">
-                        <i data-feather="phone" class="w-10 h-10"></i>
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Como denunciar?</h3>
+                    <p class="text-gray-600 mb-4">Este formulário é para denúncias de violência doméstica, contra idosos, crianças, adolescentes, mulheres, homens e outros gêneros.</p>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+                        <p class="text-yellow-700"><strong>EMERGÊNCIA:</strong>  Se você está em perigo imediato, <strong>ligue para 190 (Polícia) ou 180 (Central de Atendimento à Mulher)</strong> </p>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Central de Atendimento à Mulher</h3>
-                    <p class="text-gray-600 mb-4">Ligue 180 para denúncias de violência contra mulheres.</p>
-                    <a href="tel:180" class="text-red-600 font-medium inline-flex items-center">
-                        Ligar agora <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                    </a>
                 </div>
 
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-red-500 mb-4">
-                        <i data-feather="shield" class="w-10 h-10"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Disque Denúncia</h3>
-                    <p class="text-gray-600 mb-4">Ligue 100 para denúncias de violência contra crianças e adolescentes.</p>
-                    <a href="tel:100" class="text-red-600 font-medium inline-flex items-center">
-                        Ligar agora <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                    </a>
-                </div>
 
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-red-500 mb-4">
-                        <i data-feather="heart" class="w-10 h-10"></i>
+                <form id="reportForm" class="space-y-6">
+                    <div>
+                        <label for="reportType" class="block text-sm font-medium text-gray-700 mb-1">Tipo de Violação*</label>
+                        <select id="reportType" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="" disabled selected>Selecione o tipo de violação</option>
+                            <option value="fisica">fisica</option>
+                            <option value="psicologica">Psicológica</option>
+                            <option value="sexual">Sexual</option>
+                            <option value="economica">Financêira/econômica</option>
+                            <option value="negligencia/abandono">Negligencia/abandono</option>
+                            <option value="outro">Outros</option>
+                        </select>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Idoso</h3>
-                    <p class="text-gray-600 mb-4">Ligue 190 ou 100 para denúncias de violência contra idosos.</p>
-                    <a href="tel:190" class="text-red-600 font-medium inline-flex items-center">
-                        Ligar agora <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                    </a>
-                </div>
+
+                    <div>
+                        <label for="victimInfo" class="block text-sm font-medium text-gray-700 mb-1">Informações sobre a vítima*</label>
+                        <textarea id="victimInfo" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Informe o tipo do sistema computacional" required></textarea>
+                    </div>
+
+                    <div>
+                        <label for="incidentDetails" class="block text-sm font-medium text-gray-700 mb-1">Detalhes do ocorrido*</label>
+                        <textarea id="incidentDetails" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Detalhes do ocorrido" required></textarea>
+                    </div>
+
+                    <div>
+                        <label for="location" class="block text-sm font-medium text-gray-700 mb-1">Local do fato*</label>
+                        <input type="text" id="location" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Marca do Equipamento" required>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="reporterName" class="block text-sm font-medium text-gray-700 mb-1">Seu nome(opcional)</label>
+                            <input type="text" id="reporterName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Digite seu nome">
+                        </div>
+                        <div>
+                            <label for="reporterContact" class="block text-sm font-medium text-gray-700 mb-1">Contato (opcional)</label>
+                            <input type="text" id="reporterContact" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Telefone ou e-mail para contato">
+                        </div>
+                    </div>
+
+                     <div class="flex items-center">
+                        <input id="anonymous" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                        <label for="anonymous" class="ml-2 block text-sm text-gray-700">Manter minha identidade em sigilo (mesmo que tenha fornecido dados)</label>
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit" class="w-full bg-blue-600 text-white py-3 px-6 rounded-md font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
+                            <i class="fas fa-paper-plane mr-2"></i> Enviar Denúncia
+                        </button>
+                    </div>
+                </form>
             </div>
-        </div>
+            </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-100 py-8">
-        <div class="container mx-auto px-4 text-center">
-            <p class="text-gray-600 mb-4">
-                <i data-feather="lock" class="inline mr-1"></i>
-                Todas as denúncias são tratadas com sigilo absoluto
-            </p>
-            <p class="text-gray-500 text-sm">
-                &copy; 2023 Sistema de Denúncias de Violência. Todos os direitos reservados.
-            </p>
-        </div>
-    </footer>
 
-    <script>
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out'
-        });
-        feather.replace();
+ <script>
+ document.querySelector("#reportForm").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-        // Este é o script JavaScript adaptado para o seu formulário e a sua API Python
-        document.querySelector("#denunciaForm").addEventListener("submit", function (e) {
-            e.preventDefault();
+  const dados = {
+    tipo: document.querySelector("#reportType").value.trim(),
+    vitima: document.querySelector("#victimInfo").value.trim(),
+    incidente: document.querySelector("#incidentDetails").value.trim(),
+    local: document.querySelector("#location").value.trim(),
+    nome: document.querySelector("#reporterName").value.trim(),
+    contato: document.querySelector("#reporterContact").value.trim(),
+    anonimo: document.querySelector("#anonymous").checked,
+  };
 
-            // 1. Coleta os dados do formulário e cria um objeto com a estrutura correta
-            const dados = {
-                // Informações da Vítima
-                vitima: {
-                    nome: document.querySelector("#nomeVitima").value.trim(),
-                    idade: document.querySelector("#idadeVitima").value.trim(),
-                    genero: document.querySelector("#generoVitima").value.trim(),
-                    tipo: document.querySelector("#tipoVitima").value.trim()
-                },
-                // Informações do Incidente
-                incidente: {
-                    tipoViolencia: document.querySelector("#tipoViolencia").value.trim(),
-                    descricao: document.querySelector("#descricaoIncidente").value.trim(),
-                    data: document.querySelector("#dataIncidente").value.trim(),
-                    local: document.querySelector("#localIncidente").value.trim()
-                },
-                // Informações do Agressor
-                agressor: {
-                    nome: document.querySelector("#nomeAgressor").value.trim(),
-                    relacao: document.querySelector("#relacaoAgressor").value.trim()
-                },
-                // Informações do Denunciante (opcional)
-                denunciante: {
-                    nome: document.querySelector("#seuNome").value.trim(),
-                    telefone: document.querySelector("#seuTelefone").value.trim(),
-                    email: document.querySelector("#seuEmail").value.trim(),
-                    comoSoube: document.querySelector("#comoSoube").value.trim(),
-                    anonimo: document.querySelector("#manterAnonimato").checked
-                }
-            };
-
-            // 2. Envia os dados para a API Python usando fetch()
-            // O endpoint "/api/denuncias" corresponde ao @app.route no seu código Python
-            fetch("/api/denuncias", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(dados) // Converte o objeto JavaScript em uma string JSON
-            })
-            .then(res => {
-                if (!res.ok) {
-                    return res.json().then(errorData => {
-                        throw new Error(errorData.mensagem || 'Erro desconhecido no servidor.');
-                    });
-                }
-                return res.json();
-            })
-            .then(data => {
-                if (data.status === "sucesso") {
-                    alert("Denúncia enviada com sucesso! Agradecemos sua colaboração.");
-                    document.querySelector("#denunciaForm").reset();
-                } else {
-                    alert("Erro: " + data.mensagem);
-                }
-            })
-            .catch(err => {
-                console.error("Erro:", err);
-                alert("Erro de conexão ao enviar denúncia. Por favor, tente novamente mais tarde.");
-            });
-        });
-    </script>
+  fetch("/api/denuncias", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dados)
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.status === "sucesso") {
+      alert("Denúncia enviada com sucesso!");
+      document.querySelector("#reportForm").reset();
+    } else {
+      alert("Erro: " + data.mensagem);
+    }
+  })
+  .catch(err => {
+    console.error("Erro:", err);
+    alert("Erro de conexão ao enviar denúncia.");
+  });
+});
+  </script>
 </body>
+
 </html>
