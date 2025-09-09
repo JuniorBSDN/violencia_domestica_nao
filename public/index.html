@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRAES Vigia de Nazaré</title>
+    <title>CRAES Vigia de Nazaré - Contra a Violência Doméstica</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -63,74 +63,40 @@
 </head>
 <body class="font-sans bg-gray-50 pt-24">
   <header class="bg-white text-gray-800 shadow-lg fixed top-0 left-0 right-0 z-50">
-  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-    <!-- Logo e título -->
-    <div class="flex items-center space-x-2">
-      <img src="https://i.imgur.com/pBVZXnc.png" alt="Logo" class="w-32 h-16 md:w-40 md:h-20 object-contain">
-      <div>
-        <h1 class="text-lg md:text-xl font-bold">CREAS Vigia de Nazaré</h1>
-        <p class="text-[10px] md:text-xs text-gray-600 leading-tight">
-          Centro de Referência Especializado de Assistência Social
-        </p>
-      </div>
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <img src="https://i.imgur.com/pBVZXnc.png" alt="Logo" class="w-40 h-20 object-contain">
+            <div>
+                <h1 class="text-xl font-bold">CREAS Vigia de Nazaré</h1>
+                <p class="text-xs text-gray-600">Centro de Referência Especializado de Assistência Social</p>
+            </div>
+        </div>
+        <nav class="hidden md:block">
+            <ul class="flex items-center space-x-8">
+                <li><a href="#blog" class="hover:text-red-700 transition">Conteudo<br> Educativo</a></li>
+                <li><a href="#apoio" class="hover:text-red-700 transition">Ajuda</a></li>
+                <li><a href="#emergency-contacts" class="hover:text-red-700 transition">Emergência</a></li>
+                <li><a href="#localizacao" class="hover:text-red-700 transition">Localização</a></li>
+                <li><a href="#parceiros" class="hover:text-red-700 transition">Parceiros</a></li>
+                <li class="flex items-center space-x-4">
+                    <a href="denuncia.html" class="bg-red-700 text-white font-bold px-6 py-2 rounded-lg hover:bg-red-600 transition transform hover:scale-105">FAZER DENÚNCIA</a>
+                    <a href="#servicos" class="bg-transparent border-2 border-red-700 text-red-700 font-bold px-6 py-2 rounded-lg hover:bg-red-700 hover:text-white transition">CONHEÇA NOSSOS SERVIÇOS</a>
+                </li>
+            </ul>
+        </nav>
+        <button class="md:hidden text-2xl">
+            <i class="fas fa-bars"></i>
+        </button>
     </div>
-
-    <!-- Menu Desktop -->
-    <nav class="hidden md:block">
-      <ul class="flex items-center space-x-6 lg:space-x-8 text-sm lg:text-base">
-        <li><a href="#blog" class="hover:text-red-700 transition">Conteúdo <br class="hidden lg:block">Educativo</a></li>
-        <li><a href="#apoio" class="hover:text-red-700 transition">Ajuda</a></li>
-        <li><a href="#emergency-contacts" class="hover:text-red-700 transition">Emergência</a></li>
-        <li><a href="#localizacao" class="hover:text-red-700 transition">Localização</a></li>
-        <li><a href="#parceiros" class="hover:text-red-700 transition">Parceiros</a></li>
-        <li class="flex items-center space-x-3">
-          <a href="denuncia.html" class="bg-red-700 text-white font-bold px-4 py-2 rounded-lg hover:bg-red-600 transition transform hover:scale-105 text-xs lg:text-sm">FAZER DENÚNCIA</a>
-          <a href="#servicos" class="bg-transparent border-2 border-red-700 text-red-700 font-bold px-4 py-2 rounded-lg hover:bg-red-700 hover:text-white transition text-xs lg:text-sm">SERVIÇOS</a>
-        </li>
-      </ul>
-    </nav>
-
-    <!-- Botão Mobile -->
-    <button id="menu-btn" class="md:hidden text-2xl">
-      <i class="fas fa-bars"></i>
-    </button>
-  </div>
-
-  <!-- Menu Mobile -->
-  <nav id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
-    <ul class="flex flex-col items-center space-y-4 py-6">
-      <li><a href="#blog" class="hover:text-red-700 transition">Conteúdo Educativo</a></li>
-      <li><a href="#apoio" class="hover:text-red-700 transition">Ajuda</a></li>
-      <li><a href="#emergency-contacts" class="hover:text-red-700 transition">Emergência</a></li>
-      <li><a href="#localizacao" class="hover:text-red-700 transition">Localização</a></li>
-      <li><a href="#parceiros" class="hover:text-red-700 transition">Parceiros</a></li>
-      <li>
-        <a href="denuncia.html" class="block w-[80%] text-center bg-red-700 text-white font-bold px-4 py-2 rounded-lg hover:bg-red-600 transition">FAZER DENÚNCIA</a>
-      </li>
-      <li>
-        <a href="#servicos" class="block w-[80%] text-center border-2 border-red-700 text-red-700 font-bold px-4 py-2 rounded-lg hover:bg-red-700 hover:text-white transition">SERVIÇOS</a>
-      </li>
-    </ul>
-  </nav>
 </header>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const header = document.querySelector('header');
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    if (header) {
-      header.classList.add('header-fade-in');
-    }
-
-    // Toggle menu mobile
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+  <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const header = document.querySelector('header');
+        if (header) {
+            header.classList.add('header-fade-in');
+        }
     });
-  });
-</script>
-
+  </script>
 
 <!--SLIDE 1-->
     <div class="slideshow-container relative w-full h-96 overflow-hidden">
@@ -330,20 +296,6 @@
                 <h3 class="text-xl font-bold mb-3 text-black">Encaminhamento à Rede</h3>
                 <p class="text-gray-600">Articulação com outros serviços como abrigos, CRAS, CREAS, saúde e educação para atendimento integral às vítimas.</p>
             </div>
-            <div class="service-card bg-gray-50 p-6 rounded-lg shadow-md transition duration-300" data-aos="fade-up">
-                <div class="text-red-700 mb-4">
-                    <i class="fas fa-chalkboard-teacher text-4xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-3 text-black">Capacitações</h3>
-                <p class="text-gray-600">Oficinas e palestras sobre direitos, autonomia financeira, empoderamento feminino e prevenção à violência doméstica.</p>
-            </div>
-            <div class="service-card bg-gray-50 p-6 rounded-lg shadow-md transition duration-300" data-aos="fade-left">
-                <div class="text-red-700 mb-4">
-                    <i class="fas fa-hands-helping text-4xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-3 text-black">Grupos de Apoio</h3>
-                <p class="text-gray-600">Espaços de convivência e troca de experiências entre mulheres que vivenciaram situações de violência.</p>
-            </div>
         </div>
     </div>
   </section>
@@ -411,7 +363,7 @@
             </div>
 
             <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105" data-aos="zoom-in" data-aos-delay="800">
-                <img src="https://www.tenenteportela.rs.gov.br/public/admin/globalarq/uploads/images/zc1_w756__a799cdd932269db6105e0e07b6c54402f43eb54af2bd315ee35ccaa911851fcb_z2p4r.png" alt="Função do CREAS" class="w-full h-48 object-cover">
+                <img src="https://fcaa.mg.gov.br/dados/parceria/8/imagem/CREAS.png" alt="Função do CREAS" class="w-full h-48 object-cover">
                 <div class="p-6">
                     <h3 class="text-xl font-bold text-red-800 mb-2">A Importância do CREAS</h3>
                     <p class="text-gray-700 text-sm">Entenda qual é a função do Centro de Referência Especializado de Assistência Social e como ele atua na proteção de famílias e indivíduos em situação de risco social.</p>
@@ -531,23 +483,16 @@
                         <i class="fas fa-clock text-red-700 mt-1 mr-3"></i>
                         <div>
                             <p class="font-semibold">Horário de Funcionamento:</p>
-                            <p>Segunda a Sexta: 8h às 14h</p>
-                            <p>Plantão 24h para casos emergenciais</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start">
-                        <i class="fas fa-phone-alt text-red-700 mt-1 mr-3"></i>
-                        <div>
-                            <p class="font-semibold">Telefones:</p>
-                            <p>(91) 1234-5678 (Fixo)</p>
-                            <p>(91) 98765-4321 (WhatsApp)</p>
+                            <p>Segunda a quarta: 8h às 12h e 14h aos 17h</p>
+                            <p>Quinta - Visita domiciliar</p>
+                            <p>Sexta - atendimento interno de 8h ás 14h</p><p></p>
                         </div>
                     </div>
                     <div class="flex items-start">
                         <i class="fas fa-envelope text-red-700 mt-1 mr-3"></i>
                         <div>
                             <p class="font-semibold">E-mail:</p>
-                            <p>craes.vigia@assistenciasocial.pa.gov.br</p>
+                            <p>creasvigiadenazare@gmail.com</p>
                         </div>
                     </div>
                 </div>
@@ -594,7 +539,7 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-bold mb-4 text-yellow-400">CREAS Vigia de Nazaré</h3>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-400">CREAS Vigia de Nazaré </h3>
                     <p class="text-gray-400">Centro de Referência Especializado de Assistência Social no combate à violência doméstica e familiar.</p>
                 </div>
                 <div>
